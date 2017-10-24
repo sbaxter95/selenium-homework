@@ -52,10 +52,17 @@ describe 'qaform' do
   end
 
   it 'should automatically select a profession checkbox' do
-    @driver.find_element(:id, 'profession-0').click()
-    expect(@driver.find_element(:id, 'profession-0')['checked']).to eq "true"
-    @driver.find_element(:id, 'profession-1').click()
-    expect(@driver.find_element(:id, 'profession-1')['checked']).to eq "true"
+    @driver.find_element(:id, 'profession-0').click
+    expect(@driver.find_element(:id, 'profession-0').selected?).to eq(true)
   end
+
+  it 'should automatically select a profession checkbox' do
+    @driver.find_element(:id, 'profession-1').click
+    expect(@driver.find_element(:id, 'profession-1').selected?).to eq(true)
+  end
+
+  # it 'should automatically click on the Hybrid Framework link' do
+  #   @driver.find_element(:xpath, 'http://toolsqa.wpengine.com/wp-content/uploads/2014/04/OnlineStore.zip').click()
+  # end
 
 end
