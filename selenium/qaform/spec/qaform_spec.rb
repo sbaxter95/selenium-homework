@@ -62,7 +62,10 @@ describe 'qaform' do
   end
 
   # it 'should automatically click on the Hybrid Framework link' do
-  #   @driver.find_element(:xpath, 'http://toolsqa.wpengine.com/wp-content/uploads/2014/04/OnlineStore.zip').click()
+  #   @driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').click
+  #   expect(@driver.find_element(:link_text, 'Selenium Automation Hybrid Framework')
+  #   @driver.find_element(:link_text, 'Test File to Download').click
+  #   expect(@driver.find_element(:link_text, 'Test File to Download')
   # end
 
 end
