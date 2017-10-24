@@ -12,6 +12,16 @@ describe 'qaform' do
     @driver.find_element(:name, 'firstname').displayed?
   end
 
+  # it 'should click on the partial link at the top of the form' do
+  #   @driver.find_element(:link_text, 'Partial Link Test').click
+  #   @driver.navigate().back()
+  # end
+  #
+  # it 'should click on the link test at the top of the form' do
+  #   @driver.find_element(:link_text, 'Link Test').click
+  #   @driver.navigate().back()
+  # end
+
   it 'should input a first name automatically' do
     @driver.find_element(:name, 'firstname').send_keys('Sophie')
     expect(@driver.find_element(:name, 'firstname')['value']).to eq 'Sophie'
@@ -61,11 +71,61 @@ describe 'qaform' do
     expect(@driver.find_element(:id, 'profession-1').selected?).to eq(true)
   end
 
-  # it 'should automatically click on the Hybrid Framework link' do
-  #   @driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').click
-  #   expect(@driver.find_element(:link_text, 'Selenium Automation Hybrid Framework')
-  #   @driver.find_element(:link_text, 'Test File to Download').click
-  #   expect(@driver.find_element(:link_text, 'Test File to Download')
-  # end
+  it 'should automatically click on the Hybrid Framework link' do
+    @driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').click
+    @driver.find_element(:link_text, 'Test File to Download').click
+  end
+
+  it 'should be able to check automation tool checkboxes' do
+    @driver.find_element(:id, 'tool-0').click
+    expect(@driver.find_element(:id, 'tool-0').selected?).to eq(true)
+    @driver.find_element(:id, 'tool-1').click
+    expect(@driver.find_element(:id, 'tool-1').selected?).to eq(true)
+    @driver.find_element(:id, 'tool-2').click
+    expect(@driver.find_element(:id, 'tool-2').selected?).to eq(true)
+  end
+
+  it 'should be able to select all of the continents in the drop down menu' do
+    dropdown = @driver.find_element(id: 'continents')
+    select_list = Selenium::WebDriver::Support::Select.new(dropdown)
+
+    select_list.select_by(:text, 'Asia')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eql 'Asia'
+
+    select_list.select_by(:text, 'Europe')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eql 'Europe'
+
+    select_list.select_by(:text, 'Africa')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eql 'Africa'
+
+    select_list.select_by(:text, 'Australia')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eql 'Australia'
+
+    select_list.select_by(:text, 'South America')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eql 'South America'
+
+    select_list.select_by(:text, 'North America')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eql 'North America'
+
+    select_list.select_by(:text, 'Antartica')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eql 'Antartica'
+
+  end
+
+  it 'should be able to select Selenium commands from the selection box' do
+    selectmenu = @driver.find_element(id: 'selenium_commands')
+    select_list = Selenium::WebDriver::Support::Select.new(selectmenu)
+    select_list.select_by(:text, 'Browser Commands')
+    selected_option = select_list.selected_options[0].text
+    expect(selected_option).to eq('Browser Commands')
+    select_list.deselect_by(:text, 'Browser Commands')
+  end
 
 end
