@@ -12,15 +12,11 @@ describe 'qaform' do
     @driver.find_element(:name, 'firstname').displayed?
   end
 
-  # it 'should click on the partial link at the top of the form' do
-  #   @driver.find_element(:link_text, 'Partial Link Test').click
-  #   @driver.navigate().back()
-  # end
-  #
-  # it 'should click on the link test at the top of the form' do
-  #   @driver.find_element(:link_text, 'Link Test').click
-  #   @driver.navigate().back()
-  # end
+  it 'should click on the links at the top of the form' do
+    @driver.find_element(:link_text, 'Partial Link Test').click
+    @driver.find_element(:link_text, 'Link Test').click
+    @driver.navigate().back()
+  end
 
   it 'should input a first name automatically' do
     @driver.find_element(:name, 'firstname').send_keys('Sophie')
