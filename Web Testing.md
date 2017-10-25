@@ -60,4 +60,22 @@
 * Integration testing concerned with data and data flow
 * ```puts @driver.find_element(:name, 'firstname')['value']```
 * Can also add an '==' and then something to match - **don't do this or test in this file - make an rspec file**
-* current_urlis a useful method
+* current_url is a useful method
+* Can test with css
+* Copy with xpath is an option in the chrome devtools
+* For xpaths - '//' means that the xpath is beginning, * indicates all - everything
+* '//*' - in the entire page, look for the id, url, then strong[1]
+* **Capybara inherits fom selenium** - has own domain specific language on top of selenium - makes it faster and easier to use
+* Capybara is a module - most gems start off as modules
+* Registered chrome browser, looks for chrome driver
+* Capybara searches for multiple things
+* manual page object model - overarching class - create pages within it, objects themselves - contain methods
+* lib - functional areas of the code
+* Put overriding file for entire site in lib
+* Pages are individual objects
+* Set up constants in the page objects
+* SIGN_IN_LINK_ID indicates its an id - look for id on page
+* get to rspec - only object that needs to be instantiated is the main one, as the main class instantiates the objects for you
+* **Database is very important**
+* Can build framework to get data for tests - helpers get data, provide data needed to run test
+* Data independent - if database is the same, can use it anywhere - very resuable, independent framework
