@@ -12,12 +12,6 @@ describe 'qaform' do
     @driver.find_element(:name, 'firstname').displayed?
   end
 
-  it 'should click on the links at the top of the form' do
-    @driver.find_element(:link_text, 'Partial Link Test').click
-    @driver.find_element(:link_text, 'Link Test').click
-    @driver.navigate().back()
-  end
-
   it 'should input a first name automatically' do
     @driver.find_element(:name, 'firstname').send_keys('Sophie')
     expect(@driver.find_element(:name, 'firstname')['value']).to eq 'Sophie'
@@ -26,6 +20,7 @@ describe 'qaform' do
   it 'should input a last name automatically' do
     @driver.find_element(:name, 'lastname').send_keys('Baxter')
     expect(@driver.find_element(:name, 'lastname')['value']).to eq 'Baxter'
+    sleep 2
   end
 
   it 'should automatically be able to select the gender radio buttons' do
@@ -33,6 +28,7 @@ describe 'qaform' do
     expect(@driver.find_element(:id, 'sex-0')['checked']).to eq "true"
     @driver.find_element(:id, 'sex-1').click()
     expect(@driver.find_element(:id, 'sex-1')['checked']).to eq "true"
+    sleep 2
   end
 
   it 'should automatically select one of the experience radio buttons' do
@@ -50,6 +46,7 @@ describe 'qaform' do
     expect(@driver.find_element(:id, 'exp-5')['checked']).to eq "true"
     @driver.find_element(:id, 'exp-6').click()
     expect(@driver.find_element(:id, 'exp-6')['checked']).to eq "true"
+    sleep 2
   end
 
   it 'should automatically select a date' do
@@ -58,27 +55,34 @@ describe 'qaform' do
   end
 
   it 'should automatically select a profession checkbox' do
+    sleep 1
     @driver.find_element(:id, 'profession-0').click
+    sleep 1
     expect(@driver.find_element(:id, 'profession-0').selected?).to eq(true)
   end
 
   it 'should automatically select a profession checkbox' do
+    sleep 1
     @driver.find_element(:id, 'profession-1').click
+    sleep 1
     expect(@driver.find_element(:id, 'profession-1').selected?).to eq(true)
   end
 
   it 'should automatically click on the Hybrid Framework link' do
+    sleep 2
     @driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').click
     @driver.find_element(:link_text, 'Test File to Download').click
   end
 
   it 'should be able to check automation tool checkboxes' do
+    sleep 2
     @driver.find_element(:id, 'tool-0').click
     expect(@driver.find_element(:id, 'tool-0').selected?).to eq(true)
     @driver.find_element(:id, 'tool-1').click
     expect(@driver.find_element(:id, 'tool-1').selected?).to eq(true)
     @driver.find_element(:id, 'tool-2').click
     expect(@driver.find_element(:id, 'tool-2').selected?).to eq(true)
+    sleep 2
   end
 
   it 'should be able to select all of the continents in the drop down menu' do
@@ -112,16 +116,36 @@ describe 'qaform' do
     select_list.select_by(:text, 'Antartica')
     selected_option = select_list.selected_options[0].text
     expect(selected_option).to eql 'Antartica'
-
+    sleep 2
   end
 
   it 'should be able to select Selenium commands from the selection box' do
+    sleep 1
     selectmenu = @driver.find_element(id: 'selenium_commands')
     select_list = Selenium::WebDriver::Support::Select.new(selectmenu)
     select_list.select_by(:text, 'Browser Commands')
     selected_option = select_list.selected_options[0].text
     expect(selected_option).to eq('Browser Commands')
     select_list.deselect_by(:text, 'Browser Commands')
+    sleep 2
   end
+
+  it 'should click on the links at the top of the form' do
+    sleep 1
+    @driver.find_element(:link_text, 'Partial Link Test').click()
+    @driver.find_element(:link_text, 'Link Test').click()
+    sleep 1
+    @driver.navigate().back()
+  end
+
+  # it 'should upload file' do
+  #    @driver.find_element(id: 'photo').send_keys("/Users/tech-a34/Documents/practice.txt")
+  # end
+
+  # it 'should submit the form automatically' do
+  #   sleep 2
+  #   @driver.find_element(:id, 'submit').click()
+  #   expect(@driver.find_element(:id, 'submit').displayed?).to eq(true)
+  # end
 
 end
