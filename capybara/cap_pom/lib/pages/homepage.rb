@@ -5,7 +5,7 @@ class Homepage
 
   #Page Objects
   HOMEPAGE_URL = 'https://www.bbc.co.uk/'
-  SIGN_IN_LINK_ID = 'idcta-link'
+  SIGN_IN_LINK_ID = '#idcta-link'
 
   #helper Methods
   def visit_home_page
